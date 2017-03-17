@@ -48,7 +48,8 @@ class App extends React.Component {
   render () {
     return (
       <div className="container">
-        <h1 className="page-header">You In?</h1>
+        <div className="page-header"><h1>You In?</h1></div>
+        <button className="logout">Log out</button>
         <button className="btn-danger col-md-4 col-md-offset-4">Create Event</button>
         <br /><br />
         Here is where owner events will go <br/>
@@ -62,7 +63,7 @@ class App extends React.Component {
 
       </div>
     )
-          
+
   }
 }
 
