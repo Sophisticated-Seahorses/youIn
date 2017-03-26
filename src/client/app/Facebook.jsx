@@ -47,7 +47,7 @@ class Facebook extends React.Component {
       })
       // console.log(response.authResponse.accessToken, 'this is the access token');
       this.props.setToken(response.authResponse.accessToken);
-      this.props.getEvents();
+      this.props.getEvents(this.props.history);
       this.props.history.push('/homepage');
 
     } else if (response.status === 'not_authorized') {

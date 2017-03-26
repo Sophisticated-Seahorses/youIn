@@ -95,7 +95,7 @@ class App extends React.Component {
     })
   }
 
-  getEvents() {
+  getEvents(history) {
     $.ajax({
       url: '/events',
       method: 'GET',
@@ -110,7 +110,7 @@ class App extends React.Component {
       error: function(err) {
         console.log(err);
         if (err.status === 401) {
-          // this.props.history.push('/');
+          //history.push('/');
         }
       }.bind(this),
     });
