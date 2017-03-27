@@ -4,33 +4,72 @@ import FriendEventList from './FriendEventList.jsx';
 import CreateEventButton from './CreateEventButton.jsx';
 import LogoutButton from './LogoutButton.jsx';
 
-const Homepage = (props) => (
+class Homepage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      intervalId: null
+    };
+  }
 
-  <div>
-    <div className="container">
-      <div className="page-header">
-       <h2 id='userName'>Welcome {props.userName}</h2>
-        <LogoutButton />
-      </div>
-      <CreateEventButton 
-      history={props.history}
-      friends={props.friends}
-      getEvents={props.getEvents}/>
-      <br /><br />
-      <div className='container events'>
-        <br></br><br></br>
-        <h2 id="my-events-title" className='header-inner'> My Events</h2>
-        <OwnerEventList  ownerEventsArr={props.ownerEvents}/>
-      </div>
-        <br /><br />
-      <div className='container events'>
-        <h2 id="friend-events-title"className='header-inner'> Friend Events</h2>
-        <FriendEventList accessToken={props.accessToken} friendEventsArr={props.friendEvents}/>
-      </div>
-    </div>
-  </div>
-)
+  pollEvents() {
+    this.props.getEvents(this.props.history, function(result) {
+      
+      if (result.ownerEvents.length !== this.state.ownerEvents.length) {
+        this.setState({
+          ownerEvents: result.ownerEvents
+        });
+      }
+      if (result.friendEvents.length !== this.state.friendEvents.length) {
+        this.setState({
+          friendEvents: result.friendEvents
+        });
+      }
+    });
+  }
 
+  componentDidMount() {
+    this.setState({
+      intervalId: setInterval(this.pollEvents.bind(this), 1000)
+    });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
+    this.setState({
+      intervalId: null
+    });
+  }
+
+  render() {
+
+    return (
+      <div>
+        <div className="container">
+          <div className="page-header">
+           <h2 id='userName'>Welcome {this.props.userName}</h2>
+            <LogoutButton />
+          </div>
+          <CreateEventButton 
+          history={this.props.history}
+          friends={this.props.friends}
+          getEvents={this.props.getEvents}/>
+          <br /><br />
+          <div className='container events'>
+            <br></br><br></br>
+            <h2 id="my-events-title" className='header-inner'> My Events</h2>
+            <OwnerEventList  ownerEventsArr={this.props.ownerEvents}/>
+          </div>
+            <br /><br />
+          <div className='container events'>
+            <h2 id="friend-events-title"className='header-inner'> Friend Events</h2>
+            <FriendEventList accessToken={this.props.accessToken} friendEventsArr={this.props.friendEvents}/>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
 
 
 export default Homepage;

@@ -95,18 +95,12 @@ class App extends React.Component {
     })
   }
 
-  getEvents(history) {
+  getEvents(history, callback) {
     $.ajax({
       url: '/events',
       method: 'GET',
       contentType: 'application/json',
-      success: function (result) {
-        console.log('result of get on /events', result);
-        this.setState({
-          ownerEvents: result.ownerEvents,
-          friendEvents: result.friendEvents
-        });
-      }.bind(this),
+      success: callback.bind(this),
       error: function(err) {
         console.log(err);
         if (err.status === 401) {
