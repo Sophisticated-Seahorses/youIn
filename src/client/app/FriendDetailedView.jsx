@@ -59,19 +59,19 @@ class FriendDetailedView extends React.Component {
   confirmEventAccept () {
     // AJAX request sent to DB, confirming this users attendance
     console.log('Confirmed Accepted Event for User');
-    this.updateEventStatus('http://localhost:8080/accept');
+    this.updateEventStatus('/accept');
   }
 
   confirmEventReject () {
     // AJAX request sent to DB, confirming this users non-attendance
     console.log('Confirmed Rejected Event for User');
-    this.updateEventStatus('http://localhost:8080/reject');
+    this.updateEventStatus('/reject');
 
   }
 
   deleteEvent () {
     console.log('event DELETED!');
-    this.updateEventStatus('http://localhost:8080/delete');
+    this.updateEventStatus('/delete');
     
   }
 
