@@ -189,7 +189,7 @@ class CreateEventButton extends React.Component {
                   <input 
                     value={this.state.min}
                     onChange={this.handleChange.bind(this, 'min')}
-                    type="text" required
+                    type="number" required
                     />
                 </div>
 
