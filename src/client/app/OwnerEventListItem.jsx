@@ -21,11 +21,11 @@ class OwnerEventListItem extends React.Component {
 
     return (
       <div>
-      <div className="panel list-item" onClick={this.handleClickListItem}>
-        <span className="glyphicon glyphicon-globe col-md-1"></span>
-        <span className="col-md-4">{this.props.event.title}</span>
-        <span className="col-md-4">{date.format('dddd D') + 'th'} at {this.props.event.time}</span>
-        <span className="col-md-3">{this.props.event.attendees.length}<span> people IN</span></span>
+      <div className="panel list-item row" onClick={this.handleClickListItem}>  
+        <div className="glyphicon glyphicon-globe col-sm-1"></div>
+        <div className="col-sm-4">{this.props.event.title}</div>
+        <div className="col-sm-4">{date.format('dddd D') + 'th'} at {this.props.event.time}</div>
+        <div className="col-sm-3">{this.props.event.attendees.length}<span> people IN</span></div>
         <br/>
       </div>
         {this.state.clicked ? <OwnerDetailedView event={this.props.event}/> : '' }
