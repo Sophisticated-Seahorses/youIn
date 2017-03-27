@@ -130,7 +130,7 @@ class App extends React.Component {
         <Route path='/homepage' component={(props) => {
           return ( <Homepage ownerEvents={this.state.ownerEvents}
             friendEvents={this.state.friendEvents} friends={this.state.friends} 
-            accessToken={this.state.facebookToken}
+            accessToken={this.state.facebookToken} userName={this.state.userName}
             history={props.history}
             getEvents={this.getEvents.bind(this)}/>)
         }} />
