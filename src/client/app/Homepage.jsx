@@ -12,7 +12,10 @@ const Homepage = (props) => (
        <h2 id='userName'>Welcome {props.userName}</h2>
         <LogoutButton />
       </div>
-      <CreateEventButton friends={props.friends}/>
+      <CreateEventButton 
+      history={props.history}
+      friends={props.friends}
+      getEvents={props.getEvents}/>
       <br /><br />
       <div className='container events'>
         <br></br><br></br>

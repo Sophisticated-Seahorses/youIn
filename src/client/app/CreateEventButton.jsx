@@ -58,7 +58,7 @@ class CreateEventButton extends React.Component {
        this.setState((prevState, props) => {
          let clicked = prevState.clicked;
          let invitees = prevState.invitees;
-         let id = friend.user_id
+         let id = friend.user_id;
          clicked[id] = false;
          delete invitees[id];
          return {invitees: invitees, clicked: clicked};
@@ -70,7 +70,7 @@ class CreateEventButton extends React.Component {
         this.setState((prevState, props) => {
           let clicked = prevState.clicked;
           let invitees = prevState.invitees;
-          let id = friend.user_id
+          let id = friend.user_id;
           invitees[id] = friend;
           clicked[id] = true;
           return {invitees: invitees, clicked: clicked};
@@ -101,11 +101,14 @@ class CreateEventButton extends React.Component {
       contentType: 'application/json',
       success: function(data) {
         console.log('success from addToUsers_Events in CreateEventButton :', data);
-      },
+        this.hideModal();
+        this.props.getEvents();
+      }.bind(this),
       error: function(err) {
         console.log('error from addToUsers_Events  in CreateEventButton', err);
-      }
-    })
+        this.props.history.push('/');
+      }.bind(this)
+    });
   }
 
 
@@ -133,6 +136,7 @@ class CreateEventButton extends React.Component {
     },
     error: function(err) {
       console.log('error in ajax request in CreateEventButton', err);
+      this.props.history.push('/');
     }
   })
 

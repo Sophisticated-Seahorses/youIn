@@ -29,9 +29,9 @@ app.get('/events', passport.authenticate('facebook-token'), handler.getEvents);
 
 app.get('/users', handler.getUsers);
 
-app.post('/events/users', handler.addUsersEvents)
+app.post('/events/users', passport.authenticate('facebook-token'), handler.addUsersEvents);
 
-app.post('/events/create', handler.createEvent);
+app.post('/events/create', passport.authenticate('facebook-token'), handler.createEvent);
 
 app.post('/accept', passport.authenticate('facebook-token'), handler.acceptEvent);
 
