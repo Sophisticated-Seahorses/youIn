@@ -230,3 +230,21 @@ button */
   color: black;
 }
 
+#send_invite {
+  font-family: sans-serif;
+  font-size: 24px;
+  color: white;
+  background-color: #228B22;
+  padding: 6px 6px 6px 6px;
+  border-radius: 12px;
+}
+
+#exit_invite {
+  font-family: sans-serif;
+  font-size: 24px;
+  color: white;
+  background-color: #0000ff;
+  padding: 6px 6px 6px 6px;
+  border-radius: 12px;
+}
+

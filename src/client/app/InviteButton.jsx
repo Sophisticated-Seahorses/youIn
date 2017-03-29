@@ -15,6 +15,7 @@ class InviteButton extends React.Component {
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.getUsersInvites = this.getUsersInvites.bind(this);
 	}
 
 	showModal(){
@@ -26,6 +27,10 @@ class InviteButton extends React.Component {
 	}
 
 	componentWillMount(){
+		this.getUsersInvites();
+	}
+
+	getUsersInvites(){
 		$.ajax({
 			url: '/invites',
 			method: 'GET',
@@ -36,7 +41,7 @@ class InviteButton extends React.Component {
 				})
 			}.bind(this),
 	    error: function(err) {
-	      console.log('unsuccessful insert into invites', err);
+	      console.log('unsuccessful  request to get all invites', err);
 	    }	
 		});
 	}
@@ -53,7 +58,8 @@ class InviteButton extends React.Component {
 			data: JSON.stringify(inviteData),
 			contentType: 'application/json',
 	    success: function() {
-	    	this.hideModal();
+	    	this.getUsersInvites();
+
 	    }.bind(this),
 	    error: function(err) {
 	      console.log('unsuccessful insert into invites', err);
@@ -76,24 +82,30 @@ class InviteButton extends React.Component {
       		<form onSubmit={this.handleSubmit.bind(this)}>
       			<div className="row">
       				<div className="col-md-12">
-      					<h4 className='create'>Previously Invited:</h4>
+      					<h4 className='create'>{this.state.invites ? this.state.invites.length : null} Previously Invited:</h4>
       					<InviteList invites={this.state.invites}> </InviteList>
-	      				<h4 className='create'>Input name and email:</h4>
-	              Name: 
+	      				<h3 className='create'>Input name and email:</h3>
+	              <h4 className='create'>Name:</h4>
 	              <input 
 	                value={this.state.title} 
 	                type="text"
 	                onChange={this.handleChange.bind(this, 'name')} required
 	              />
-	              Email: 
+	              <h4 className='create'>Email: </h4>
 	              <input 
 	                value={this.state.title} 
 	                type="text"
 	                onChange={this.handleChange.bind(this, 'email')} required
 	              />	              
       				</div>
+      				<div>
+      					<br></br>
+      				</div>
               <div className="col-md-12">
-                <button type="submit">Invite</button>
+              	<div class="row">
+				            <button type="submit" id="send_invite" >Invite</button>
+				            <button type="button" onClick={this.hideModal.bind(this)} id="exit_invite" className="pull-right" >Done</button>
+              	</div>		
               </div>
       			</div>
       		</form>
