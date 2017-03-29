@@ -186,6 +186,15 @@ button */
   border-radius: 12px;
 }
 
+#invite {
+  font-family: sans-serif;
+  font-size: 32px;
+  color: white;
+  background-color: #0000FF;
+  padding: 12px 12px 12px 12px;
+  border-radius: 12px;
+}
+
 #my-events-title {
   font-weight: bold;
   font-size: 42px;
@@ -219,5 +228,23 @@ button */
   border-radius: 12px;
   background-color: #f47927;
   color: black;
+}
+
+#send_invite {
+  font-family: sans-serif;
+  font-size: 24px;
+  color: white;
+  background-color: #228B22;
+  padding: 6px 6px 6px 6px;
+  border-radius: 12px;
+}
+
+#exit_invite {
+  font-family: sans-serif;
+  font-size: 24px;
+  color: white;
+  background-color: #0000ff;
+  padding: 6px 6px 6px 6px;
+  border-radius: 12px;
 }
 
