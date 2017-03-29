@@ -76,6 +76,7 @@ class InviteButton extends React.Component {
       		<form onSubmit={this.handleSubmit.bind(this)}>
       			<div className="row">
       				<div className="col-md-12">
+      					<h4 className='create'>Previously Invited:</h4>
       					<InviteList invites={this.state.invites}> </InviteList>
 	      				<h4 className='create'>Input name and email:</h4>
 	              Name: 

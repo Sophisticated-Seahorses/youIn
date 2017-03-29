@@ -1,10 +1,9 @@
 'use strict';
 
 let db = require('../config');
-
 module.exports = function(req, res) {
-  
-  db.query('select * from invites')
+	var user_id = req.user.user_id;
+  db.query('select * from invites where user_id = $1', [user_id])
   .then ( (invites) => {
     res.status(200).json(invites);
   })
