@@ -10,4 +10,6 @@ module.exports.getUsers = require('./get_users');
 module.exports.addUsersEvents = require('./add_users_events');
 module.exports.deleteOwnerEvent = require('./delete_owner_event');
 module.exports.checkStatus = require('./check_status');
+module.exports.getInvites = require('./get_invites');
+module.exports.addInvite = require('./add_invite');
 

@@ -186,6 +186,15 @@ button */
   border-radius: 12px;
 }
 
+#invite {
+  font-family: sans-serif;
+  font-size: 32px;
+  color: white;
+  background-color: #0000FF;
+  padding: 12px 12px 12px 12px;
+  border-radius: 12px;
+}
+
 #my-events-title {
   font-weight: bold;
   font-size: 42px;

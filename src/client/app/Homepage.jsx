@@ -3,6 +3,7 @@ import OwnerEventList from './OwnerEventList.jsx';
 import FriendEventList from './FriendEventList.jsx';
 import CreateEventButton from './CreateEventButton.jsx';
 import LogoutButton from './LogoutButton.jsx';
+import InviteButton from './InviteButton.jsx';
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -50,11 +51,13 @@ class Homepage extends React.Component {
            <h2 id='userName'>Welcome <span id="headerName">{this.props.userName}</span></h2>
             <LogoutButton />
           </div>
+          <InviteButton />
           <CreateEventButton
           history={this.props.history}
           friends={this.props.friends}
           getEvents={this.props.getEvents}/>
-          <br /><br />
+          <br /><br /><br /><br />
+          <br /><br /><br /><br />
           <div className='container events'>
             <br></br><br></br>
             <h2 id="my-events-title" className='header-inner'> My Events</h2>
@@ -63,9 +66,7 @@ class Homepage extends React.Component {
             accessToken={this.props.accessToken}
             getEvents={this.props.getEvents}
             history={this.props.history}/>
-          </div>
-            <br /><br />
-          <div className='container events'>
+
             <h2 id="friend-events-title"className='header-inner'> Friend Events</h2>
             <FriendEventList accessToken={this.props.accessToken} 
             friendEventsArr={this.props.friendEvents}
