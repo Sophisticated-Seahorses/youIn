@@ -48,4 +48,11 @@ module.exports = (db) => {
       email varChar(50),\
       CONSTRAINT unique_email_to_user_id unique (user_id, email));')
   })
+  .then(() => {
+    return db.query('CREATE TABLE IF NOT EXISTS chats (\
+      id SERIAL not null PRIMARY KEY,\
+      user_id BIGINT not null,\
+      event_id INT not null,\
+      message varChar(7000));')  
+  })
 };

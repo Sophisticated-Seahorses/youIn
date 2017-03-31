@@ -26,7 +26,7 @@ class OwnerEventListItem extends React.Component {
 
   render() {
     let date = moment(this.props.event.date);
-
+    console.log(this.props.event);
     return (
       <div>
       <div className="panel list-item row" onClick={this.handleClickListItem}>  

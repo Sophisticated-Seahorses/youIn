@@ -73,8 +73,15 @@ app.get('/test', passport.authenticate('facebook-token'), function(req, res) {
 
 app.get('*', handler.wildCard);
 
-
-
-app.listen(port, function() {
+var server = app.listen(port, function() {
   console.log('we are now listening on: ' + port);
+});
+
+
+var io = require('socket.io').listen(server);
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('sendMessage', function(data){
+    console.log('here is a message' + data);
+  })
 });
