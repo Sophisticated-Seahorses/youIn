@@ -8,6 +8,7 @@ let passport = require('./middleware/initPassport');
 let passporto = require('./middleware/googlePassport')
 let path = require('path');
 let handler = require('./routes/request_handler');
+var queries = require('/models/socket_queries');
 
 let port = process.env.PORT || 8080;
 let app = express();
@@ -36,6 +37,7 @@ app.get('/users', handler.getUsers);
 //     // Successful authentication, redirect home.
 //     res.redirect('/');
 //   });
+app.get('/user', handler.getUser);
 
 app.post('/events/users', passport.authenticate('facebook-token'), handler.addUsersEvents);
 
@@ -82,6 +84,6 @@ var io = require('socket.io').listen(server);
 io.on('connection', function(socket){
   console.log('a user connected');
   socket.on('sendMessage', function(data){
-    console.log('here is a message' + data);
+
   })
 });
