@@ -2,8 +2,6 @@ import React from 'react';
 import {render} from 'react-dom';
 
 const ChatMessageItem = (props) => (
-	<div>
-		<h5> TEST </h5>
-	</div>
+	<div> <b>{props.message.firstname}</b> : {props.message.message}</div>
 )
 export default ChatMessageItem;

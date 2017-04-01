@@ -5,19 +5,18 @@ import ChatMessageItem from './ChatMessageItem.jsx';
 class ChatMessageList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    }
-    //bind methods here
   }
-  //Insert Methods Here
 
   render() {
   	let messageList = undefined;
+    if(this.props.messages !== null){
+      messageList = this.props.messages;
+    }
   	return (
   		<div>
   		<h3> Event Chatter </h3>
 	  	{messageList !== undefined ? (
-	  		this.props.messages.map((message) => <ChatMessageItem />)  
+	  		this.props.messages.map((message, i) => <ChatMessageItem key={i} message={message}/>)  
 	  	) : <div></div>}
   		</div>
   	);

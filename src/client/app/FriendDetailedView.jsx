@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import ChatRoom from './ChatRoom.jsx'
 
 class FriendDetailedView extends React.Component {
   constructor(props) {
@@ -94,6 +95,9 @@ class FriendDetailedView extends React.Component {
           <ul>
             {this.props.event.attendees.map((friend, i) => <li key={i}>{friend.firstname}</li>)}
           </ul>
+        </div>
+        <div className="col-md-12 ">
+          <ChatRoom eventId = {this.props.eventId} />
         </div>
       </div>
     );

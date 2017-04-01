@@ -52,12 +52,12 @@ class OwnerDetailedView extends React.Component {
         <div className="col-md-8 col-md-offset-1">
           <p>{this.props.event.description}</p>
           <p>We're meeting at: {this.props.event.location}</p>
-        </div>
-        <div className="attendees col-md-3">
-          <h4> Attendees: </h4>
-          <ul>
-            {attendees.map((attendee, i) => <li key={i}>{attendee.firstname}</li>)}
-          </ul>
+          <div className="attendees">
+            <h4> Attendees: </h4>
+            <ul>
+              {attendees.map((attendee, i) => <li key={i}>{attendee.firstname}</li>)}
+            </ul>
+          </div>        
         </div>
         <div className="col-md-12 ">
           <ChatRoom eventId = {this.props.eventId} />

@@ -24,7 +24,6 @@ class ChatRoom extends React.Component {
       method: 'GET',
       data: {eventId: this.props.eventId},
       success: function(data) {
-        console.log(data);
         this.setState({messages: data});
       }.bind(this),
       error: function(err) {
@@ -55,8 +54,13 @@ class ChatRoom extends React.Component {
     })    
   }
 
+  componentDidMount(){
+    socket.on('newMessage', function(){
+      this.retrieveMessages();
+    }.bind(this));
+  }
+
   componentWillMount(){
-    //this is not necessary because the user is included the request
     $.ajax({
       url: '/user',
       method: 'GET',
@@ -72,12 +76,6 @@ class ChatRoom extends React.Component {
   }
 
   render() {
-  // let messages = null;
-  // if(this.state.messages !== null){
-  //   messages = this.state.messages.map((message) =>
-  //     <li>{message.message}</li>
-  //   );
-  // }
     return (
       <div>
         <ChatMessageList messages={this.state.messages}/>
