@@ -1,51 +1,88 @@
 import React from 'react';
 import $ from 'jquery';
 import io from 'socket.io-client';
+import ChatMessageList from './ChatMessageList.jsx'
 
 const socket = io();
 
 class ChatRoom extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: '', user: null};
+    this.state = {input: '', user: null, messages: null};
     this.handleChange = this.handleChange.bind(this);
     this.handleChatMessageSubmit = this.handleChatMessageSubmit.bind(this);
+    this.retrieveMessages = this.retrieveMessages.bind(this);
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({input: event.target.value});
+  }
+
+  retrieveMessages(){
+    $.ajax({
+      url: '/chatRoom',
+      method: 'GET',
+      data: {eventId: this.props.eventId},
+      success: function(data) {
+        console.log(data);
+        this.setState({messages: data});
+      }.bind(this),
+      error: function(err) {
+        console.log('error in ajax request in ChatRoom', err);
+      }
+    })
   }
 
   handleChatMessageSubmit(event) {
     event.preventDefault();
-    console.log(this.state.user[0]);
-    socket.emit('sendMessage', {
-      user: this.state.user[0],
-      eventId: this.props.eventId,
-      message: this.state.value
-    })
+    let messageData = {
+      message: this.state.input,
+      user: this.state.user,
+      eventId: this.props.eventId
+    }
+    $.ajax({
+      url: '/chatRoom',
+      method: 'POST',
+      data: JSON.stringify(messageData),
+      contentType: 'application/json',
+      success: function() {
+        socket.emit('sentMessage');
+        this.retrieveMessages();
+      }.bind(this),
+      error: function(err) {
+        console.log('error in ajax request in ChatRoom', err);
+      }
+    })    
   }
 
-  componentDidMount(){
+  componentWillMount(){
+    //this is not necessary because the user is included the request
     $.ajax({
       url: '/user',
       method: 'GET',
       success: function(data) {
-        this.setState({user: data});
+        this.setState({user: data[0]});
       }.bind(this),
       error: function(err) {
         console.log('error in ajax request in ChatRoom', err);
         this.props.history.push('/');
       }
     })
+    this.retrieveMessages();
   }
 
   render() {
+  // let messages = null;
+  // if(this.state.messages !== null){
+  //   messages = this.state.messages.map((message) =>
+  //     <li>{message.message}</li>
+  //   );
+  // }
     return (
       <div>
-        <ul id="messages"></ul>
+        <ChatMessageList messages={this.state.messages}/>
         <form onSubmit={this.handleChatMessageSubmit}>
-          <input id="m" type="text" value={this.state.value} onChange={this.handleChange}/>
+          <input id="m" type="text" value={this.state.input} onChange={this.handleChange}/>
           <button>Send</button>
         </form>
       </div>

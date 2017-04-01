@@ -52,7 +52,11 @@ module.exports = (db) => {
     return db.query('CREATE TABLE IF NOT EXISTS chats (\
       id SERIAL not null PRIMARY KEY,\
       user_id BIGINT not null,\
+      firstname varChar(50),\
       event_id INT not null,\
-      message varChar(7000));')  
+      message varChar(400));')  
   })
 };
+
+
+      // photoUrl varChar(150),\

@@ -60,7 +60,6 @@ class OwnerDetailedView extends React.Component {
           </ul>
         </div>
         <div className="col-md-12 ">
-          <p> Event Chatter </p>
           <ChatRoom eventId = {this.props.eventId} />
         </div>
         <button onClick={this.deleteEvent} id="owner-delete-button" className="col-md-offset-1">Delete this Event</button>
