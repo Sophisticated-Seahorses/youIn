@@ -10,8 +10,8 @@ class LogoutButton extends React.Component {
     FB.logout((response) => {
       console.log(response);
     });
-   
   }
+  
   render() {
     return (
       <Link className='btn btn-default' to='/' onClick={this.logout.bind(this)} id='logout'>Logout</Link>
@@ -19,4 +19,4 @@ class LogoutButton extends React.Component {
   }
 }
 
-export default LogoutButton; 
+export default LogoutButton;

@@ -3,8 +3,8 @@
 let db = require('../config');
 
 module.exports = function(req, res) {
-  
-  db.query('select * from users')
+  db.query('SELECT users.user_id, users.firstname, users.lastname, users.photoUrl FROM users \
+  		where users.user_id = $1', [req.user.user_id])
   .then ( (users) => {
     res.status(200).json(users);
   })

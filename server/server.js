@@ -5,8 +5,10 @@ let bodyParser = require('body-parser');
 let cookieParser = require('cookie-parser');
 let session = require('express-session');
 let passport = require('./middleware/initPassport');
+let passporto = require('./middleware/googlePassport')
 let path = require('path');
 let handler = require('./routes/request_handler');
+// var queries = require('/models/socket_queries');
 
 let port = process.env.PORT || 8080;
 let app = express();
@@ -29,6 +31,16 @@ app.get('/events', passport.authenticate('facebook-token'), handler.getEvents);
 
 app.get('/users', handler.getUsers);
 
+// app.get('/auth/google/callback',
+//   passporto.authenticate('google', { failureRedirect: '/login' }),
+//   function(req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect('/');
+//   });
+app.get('/user', handler.getUser);
+
+app.get('/chatRoom', passport.authenticate('facebook-token'), handler.getChat);
+
 app.post('/events/users', passport.authenticate('facebook-token'), handler.addUsersEvents);
 
 app.post('/events/create', passport.authenticate('facebook-token'), handler.createEvent);
@@ -43,6 +55,16 @@ app.post('/delete/owner', passport.authenticate('facebook-token'), handler.delet
 
 app.post('/checkStatus', passport.authenticate('facebook-token'), handler.checkStatus);
 
+app.post('/chatRoom', passport.authenticate('facebook-token'), handler.insertChat);
+
+//handle invites-related get and post requests
+app.get('/invites', passport.authenticate('facebook-token'), handler.inviteeList);
+
+app.post('/invites', passport.authenticate('facebook-token'), handler.invites);
+
+
+
+
 app.get('/test', passport.authenticate('facebook-token'), function(req, res) {
   if (req.user) {
     res.status(200).json(
@@ -56,7 +78,14 @@ app.get('/test', passport.authenticate('facebook-token'), function(req, res) {
 
 app.get('*', handler.wildCard);
 
-
-app.listen(port, function() {
+var server = app.listen(port, function() {
   console.log('we are now listening on: ' + port);
+});
+
+
+var io = require('socket.io').listen(server);
+io.on('connection', function(socket){
+  socket.on('sentMessage', function(){
+    socket.broadcast.emit('newMessage');
+  });
 });
