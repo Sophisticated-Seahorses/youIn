@@ -9,7 +9,7 @@ module.exports = function(req, res) {
     res.status(200).json(users);
   })
   .catch( (err) => {
-    res.status(404).send(err, 'Error in get_users handler function');
+    res.status(500).send(err, 'Error in get_users handler function');
   })
 
 }
