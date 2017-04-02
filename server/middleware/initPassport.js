@@ -3,8 +3,8 @@ let FacebookTokenStrategy = require('passport-facebook-token');
 let db = require('../config.js');
 
 passport.use(new FacebookTokenStrategy({
-  clientID: process.env.CLIENT_ID || '2263189540573109',
-  clientSecret: process.env.CLIENT_SECRET || '39ab2b50c8bb1139c799446e8b77dedc'
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET
 }, function(accessToken, refreshToken, profile, done) {
   let id = +profile.id;
   db.query('SELECT * FROM users WHERE user_id = $1', [id])
