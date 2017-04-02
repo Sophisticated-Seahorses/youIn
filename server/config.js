@@ -12,10 +12,10 @@ const database = 'youin';
 
 // });
 
-//let db = Promise.promisifyAll(connection, {multiArgs: true});
-if (process.env.PORT) {
+// let db = Promise.promisifyAll(connection, {multiArgs: true});
+if (process.env.HEROKU) {
   pgp.pg.defaults.ssl = true;
-  
+
   let db = pgp(process.env.DATABASE_URL);
 
   makeSchema(db);

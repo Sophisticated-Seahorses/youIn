@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import ChatRoom from './ChatRoom.jsx'
 
 class OwnerDetailedView extends React.Component {
   constructor(props) {
@@ -16,7 +17,6 @@ class OwnerDetailedView extends React.Component {
 
   updateEventStatus(url) {
     // AJAX request to delete event from users list in the database
-    // console.log('yo', this.props.accessToken);
     $.ajax({
       url: url,
       method: 'POST',
@@ -36,6 +36,8 @@ class OwnerDetailedView extends React.Component {
     });
   }
 
+
+
   deleteEvent () {
     console.log('event DELETED!');
     this.updateEventStatus('/delete/owner');
@@ -46,15 +48,19 @@ class OwnerDetailedView extends React.Component {
     const attendees = this.props.event.attendees;
 
     return (
-      <div className="row list-item">
+      <div id="event-details" className="event-details row list-item">
         <div className="col-md-8 col-md-offset-1">
           <p>{this.props.event.description}</p>
           <p>We're meeting at: {this.props.event.location}</p>
+          <div className="attendees">
+            <h4> Attendees: </h4>
+            <ul>
+              {attendees.map((attendee, i) => <li key={i}>{attendee.firstname}</li>)}
+            </ul>
+          </div>        
         </div>
-        <div className="col-md-3">
-          <ul>
-            {attendees.map((attendee, i) => <li key={i}>{attendee.firstname}</li>)}
-          </ul>
+        <div className="col-md-12 ">
+          <ChatRoom eventId = {this.props.eventId} />
         </div>
         <button onClick={this.deleteEvent} id="owner-delete-button" className="col-md-offset-1">Delete this Event</button>
       </div>

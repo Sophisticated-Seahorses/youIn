@@ -65,11 +65,11 @@ h2, h4 {
   text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 
-p, li {
-  color: white;
+/*p, li {
+  color: black;
   font-family: Roboto, sans-serif;
   text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-}
+}*/
 
 .create {
   font-family: Roboto, sans-serif;
@@ -184,6 +184,48 @@ button */
   background-color: #800000;
   padding: 12px 12px 12px 12px;
   border-radius: 12px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-shadow: 0 2px #b2b2b2;
+}
+
+#create_event:hover {background-color: #b80101}
+
+#create_event:active {
+  background-color: #800000;
+  box-shadow: 0 2px #b2b2b2;
+  transform: translateY(3px);
+}
+
+.invite_friends {
+  font-family: sans-serif;
+  font-size: 32px;
+  color: white;
+  background-color: #f47676;
+  padding: 12px 12px 12px 12px;
+  border-radius: 12px;
+  text-align: center;
+  float: right;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-shadow: 0 2px #b2b2b2;
+}
+
+.invite_friends:hover {background-color: #f69191}
+
+.invite_friends:active {
+  background-color: #f47676;
+  box-shadow: 0 2px #b2b2b2;
+  transform: translateY(3px);
+}
+
+.inviteFriendsMessage {
+  font-family: Roboto, sans-serif;
+  color: black;
+  text-shadow: none;
+  text-align: center;
 }
 
 #my-events-title {
@@ -221,3 +263,15 @@ button */
   color: black;
 }
 
+.attendees {
+  float: right;
+}
+
+form { background: #000; padding: 3px; bottom: 0; width: 100%; }
+form input { border: 0; padding: 10px; width: 90%; margin-right: .5%;  }
+form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+
+
+#m {
+  color: black;
+}

@@ -3,11 +3,21 @@
   "scripts": {
   },
   "env": {
+    "CLIENT_ID": "133603993839631",
+    "CLIENT_SECRET": "97640f18ab502560e76f63312fcdc699",
+    "GOOGLE_CLIENT_SECRET": "Gn-tJ9Y3S0etQRiUcKb1CqAR",
+    "GOOGLE_CLIENT_ID": "107027858208-ok6pdcbkit0qd7f7sqmdqeqlcck16ise.apps.googleusercontent.com",
+    "DATABASE_URL": "postgres://fbqiyueufjnxsp:fe15d9817689b9b370981030ff344d72cbe1e2d983594517779cb38919719d4b@ec2-50-19-89-124.compute-1.amazonaws.com:5432/d4iddb7vkl98eo"
   },
   "formation": {
   },
   "addons": [
-
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "9.6"
+      }
+    }
   ],
   "buildpacks": [
     {
