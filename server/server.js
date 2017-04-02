@@ -10,6 +10,11 @@ let handler = require('./routes/request_handler');
 
 let port = process.env.PORT || 8080;
 let app = express();
+var server = require('http').Server(app);
+let io = require('socket.io')(server);
+
+// let trace = require('babel-plugin-trace');
+// trace: 'JG using trace with var:', port;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -54,7 +59,37 @@ app.get('/test', passport.authenticate('facebook-token'), function(req, res) {
   }
 });
 
+app.post('/sms/remind', handler.sendSms);
+
 app.get('*', handler.wildCard);
+
+// io.on('connection', function (socket) {
+//   console.log('inside connectionYEAHBUDDY');
+//   socket.on('chat', function(msg) {
+//     console.log('message from client:', msg)
+//     //on incoming message log message in db and return updated message list
+//     handler.saveMessage(msg)
+//       .then( () => {
+//         console.log('inside then promise', msg);
+//         return handler.getMessages(msg.event_id)
+//       }).
+//       then((messages) => {
+//         // return handler.getMessages(msg)
+//         console.log('messageSERVER', messages)
+//         io.emit('messages', messages);
+//       })
+//       .catch( (error) => {
+//         console.error(error);
+//       })
+//     });
+//   socket.on('disconnect', function (data) {
+//     console.log('userDisconnected', data)
+//   })
+// })
+
+// server.listen(port, function(){
+//   console.log('we are now listening on: who cares!!!', port);
+// })
 
 
 app.listen(port, function() {

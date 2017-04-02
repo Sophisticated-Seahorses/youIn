@@ -8,9 +8,7 @@ import {users as friends} from '../../../server/data.js';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Facebook from './Facebook.jsx';
 import $ from 'jquery';
-
-
-
+import Event from './Event.jsx';
 
 class App extends React.Component {
   constructor(props){
@@ -20,17 +18,28 @@ class App extends React.Component {
       facebookToken: '',
       userName: '',
       ownerEvents: [],
-      friendEvents: []
+      friendEvents: [],
+      successfulLogin: false
     }
 
     this.getUsers = this.getUsers.bind(this);
+    this.getEvents = this.getEvents.bind(this);
+    this.setName = this.setName.bind(this);
+    this.setToken = this.setToken.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   componentDidMount() {
     let context = this;
-
     context.getUsers();
   }
+
+  handleLogin() {
+    this.setState({
+      successfulLogin: !this.state.successfulLogin
+    })
+  }
+
   setToken(token) {
     // console.log(token, 'this token went through to the top');
     this.setState({
@@ -40,7 +49,7 @@ class App extends React.Component {
   }
   setName(name) {
     this.setState({
-      userName: name 
+      userName: name
     });
   }
 
@@ -71,33 +80,43 @@ class App extends React.Component {
         if (err.status >= 400) {
           history.push('/');
         }
-      }.bind(this),
+      },
     });
   }
 
   render () {
-    return (
-      <Router>
-      <div>
-        <Route exact path='/' component={(props) => {
-          return (<Facebook history={props.history} 
-            setToken={this.setToken.bind(this)}
-            setName={this.setName.bind(this)} 
-            getEvents={this.getEvents.bind(this)}/>
-          )
-        }} />
-        <Route path='/homepage' component={(props) => {
-          return ( <Homepage ownerEvents={this.state.ownerEvents}
-            friendEvents={this.state.friendEvents} friends={this.state.friends} 
-            accessToken={this.state.facebookToken} userName={this.state.userName}
-            history={props.history}
-            getEvents={this.getEvents.bind(this)}/>)
-        }} />
-      </div>
-      </Router>
-    )
-  }
 
+    if(!this.state.successfulLogin){
+      return (
+        <Router>
+          <div>
+            <Route exact path='/' component={(props) => {
+              return (<Facebook history={props.history}
+                setToken={this.setToken.bind(this)}
+                setName={this.setName.bind(this)}
+                getEvents={this.getEvents}
+                handleLogin={this.handleLogin}/>
+              )
+            }} />
+          </div>
+        </Router>
+      )
+    } else {
+      return(
+        <Router>
+          <div>
+            <Route path='/homepage' component={(props) => {
+              return ( <Homepage ownerEvents={this.state.ownerEvents}
+                friendEvents={this.state.friendEvents} friends={this.state.friends}
+                accessToken={this.state.facebookToken} userName={this.state.userName}
+                history={props.history}
+                getEvents={this.getEvents}/>)
+            }} />
+          </div>
+        </Router>
+      )
+    }
+  }
 }
 
 render(<App/>, document.getElementById('app'));

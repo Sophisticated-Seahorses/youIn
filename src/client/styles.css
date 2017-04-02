@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:100,300');
 
 .page-header {
   background: url(./media_lib/youInLogo.png) 50% 50% no-repeat;
@@ -38,10 +39,11 @@
 
 .login {
   /*background-color: rgba(161, 23, 45, 0.7)*/
+  /*background: url(./media_lib/campfire-984020_1920.jpg) no-repeat center center fixed;*/
 }
 
 body {
-  background: url(./media_lib/campfire-984020_1920.jpg) no-repeat center center fixed;
+  /*background: url(./media_lib/campfire-984020_1920.jpg) no-repeat center center fixed;*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -54,21 +56,27 @@ h1 {
   text-align: center;
   color: white;
   font-family: Roboto, sans-serif;
-  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  /*text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;*/
 }
 
 h2, h4 {
-  vertical-align: text-bottom;
-  text-align: center;
+  /*vertical-align: text-bottom;*/
+  /*text-align: center;*/
   color: white;
-  font-family: Roboto, sans-serif;
-  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  /*font-family: Roboto, sans-serif;*/
+  font-family: 'Josefin Sans', sans-serif;
+font-weight: 100;
+  /*text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;*/
+}
+
+h4{
+  color: black;
 }
 
 p, li {
   color: white;
   font-family: Roboto, sans-serif;
-  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  /*text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;*/
 }
 
 .create {
@@ -221,3 +229,114 @@ button */
   color: black;
 }
 
+h3.sendText {
+    display: inline;
+}
+
+
+/*================ CSS REDESIGN =================*/
+
+.directory {
+  background-color: rgb(77,57,75);
+  color: white;
+}
+
+.event-title {
+  background-color: rgb(231,227,217);  /* for debug */
+}
+
+.event-chat {
+  background-color: rgb(230,230,230);  /* for debug */
+
+}
+
+.container-fluid.main{
+  margin: 0 auto;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: black;
+}
+
+.col-sm-3.account{
+  background-color: rgb(77, 56, 75);
+  height: 100%;
+  padding: 0;
+}
+
+.col-sm-12.topbar {
+  background-color: antiquewhite;
+  padding: 1em;
+  margin: 0 auto;
+  width: 100%;
+  border-bottom: 2px double black;
+}
+
+.col-sm-9.right9 {
+  padding: 0;
+}
+
+.col-sm-8.mainview {
+  background-color: antiquewhite;
+  height: 100%;
+}
+.col-sm-12.mainview {
+  background-color: antiquewhite;
+  height: 100%;
+}
+
+.col-sm-4.right4 {
+  background-color: antiquewhite;
+  height: 100%;
+  border-left: 2px double black;
+}
+
+.col-sm-12.accountMyEvents {
+    padding: 2em;
+}
+.col-sm-12.accountFriendEvents {
+    padding: 2em;
+}
+.col-sm-12.accountTopBar {
+    padding: 2em;
+}
+.row-sm-3.accountPhoto img {
+  height: 4em;
+  border-radius: 10%;
+  float: left;
+}
+.row-sm-9.accountName h2 {
+  display: inline;
+  font-size: 2em;
+}
+
+.eventListItem li{
+  font-size: 1.6em;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  list-decoration: none;
+}
+
+.eventListItem li:hover {
+  color: cornflowerblue;
+  transition: 0.2s ease;
+}
+
+.caret-down {
+  font-size: 0.5em;
+  padding-left: 2em;
+}
+
+.topBar h2 {
+  color: black;
+  display: inline;
+}
+
+.flexRowTop h2 {
+  color: black;
+}
+
+.progress {
+  width: 20%;
+  float: right;
+}

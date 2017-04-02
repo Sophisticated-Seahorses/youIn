@@ -42,3 +42,9 @@ jspm_packages
 
 # local config file
 .env
+
+# Mac files
+.DS_Store
+
+# API dummy data
+server/dummy_data.json
