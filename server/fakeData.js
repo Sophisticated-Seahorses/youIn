@@ -9,7 +9,8 @@ var usersEvents = require('./data').usersEvents;
 
 // iterate over the users array
 users.forEach( (user) => {
-  db.query('INSERT into users VALUES (${user_id}, ${token}, ${firstname}, ${lastname}, ${photoUrl}, ${email})', user)
+  db.query('INSERT into users VALUES (${user_id}, ${token}, ${firstname}, ${lastname}, ${photoUrl}, ${email}, ${phoneNumber}) ON CONFLICT (user_id) DO UPDATE SET phoneNumber = excluded.phoneNumber, email = excluded.email;', 
+    user)
  .then((result) => {
    console.log('these are fake users', result);
    // done(null, result);
@@ -21,7 +22,8 @@ users.forEach( (user) => {
 });
 
 events.forEach( (event) => {
-  db.query('INSERT into EVENTS VALUES (${event_id}, ${owner}, ${title}, ${short_desc}, ${description}, ${location}, ${date}, ${time}, ${min})', event)
+  db.query('INSERT into EVENTS VALUES (${event_id}, ${owner}, ${title}, ${short_desc}, ${description}, ${location}, ${date}, ${time}, ${min})ON CONFLICT (event_id) DO UPDATE SET description = excluded.description;',
+    event)
   .then((result) => {
     console.log('these are fake events', result);
   })

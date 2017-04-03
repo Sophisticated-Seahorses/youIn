@@ -1,21 +1,25 @@
 import React from 'react';
 import $ from 'jquery';
+import AttendeeTable from './AttendeeTable.jsx';
 
-class OwnerDetailedView extends React.Component {
+class EventOverview extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      confirm: false,
       remindButtonClicked: false
     };
-    //bind methods here
     this.deleteEvent = this.deleteEvent.bind(this);
     this.updateEventStatus = this.updateEventStatus.bind(this);
+    this.updateEventDetails = this.updateEventDetails.bind(this);
     this.handleRemindClick = this.handleRemindClick.bind(this);
   }
-  //insert methods here
+  componentDidMount() {
+    console.log('inside DID MOUNT EVENT OVERVIEW');
+  }
 
-
+  updateEventDetails(event) {
+    console.log('inside update event details');
+  }
   updateEventStatus(url) {
     // AJAX request to delete event from users list in the database
     // console.log('yo', this.props.accessToken);
@@ -43,9 +47,9 @@ class OwnerDetailedView extends React.Component {
     this.updateEventStatus('/delete/owner');
 
   }
-
   sendSmsReminder(url) {
     // AJAX request to send event reminder SMS from users list in the database
+    console.log('yay!');
     $.ajax({
       url: url,
       method: 'POST',
@@ -62,43 +66,60 @@ class OwnerDetailedView extends React.Component {
     });
   }
 
+
   handleRemindClick () {
     console.log('reminder clicked!');
 
     if (!this.state.remindButtonClicked) {
       this.sendSmsReminder('/sms/remind');
     }
-    
+
     this.setState({
       remindButtonClicked: !this.state.remindButtonClicked
     });
   }
 
   render() {
-    const attendees = this.props.event.attendees;
-
+    const event = this.props.event;
+    const date = this.props.event ? this.props.event.date.slice(0, 10) : undefined;
     return (
-      <div className="row list-item">
-        <div className="col-md-8 col-md-offset-1">
-          <p>{this.props.event.description}</p>
-          <p>We're meeting at: {this.props.event.location}</p>
+
+      <div className='EventOverviewWrapper'>
+        <div className='eventDetails'>
+          <h4>Title: {event.title}</h4>
+          <h4>Location: {event.location}</h4>
+          <h4>Date: {date}</h4>
+          <h4>Time: {event.time}</h4>
+          <h4>Type: {event.short_desc}</h4>
+          <h4>Description: {event.description}</h4>
+          <h5 className="linkLookalike" onClick={this.updateEventDetails}>Update</h5>
         </div>
-        <div className="col-md-3">
-          <ul>
-            {attendees.map((attendee, i) => <li key={i}>{attendee.firstname}</li>)}
-          </ul>
+
+        <div className='reminders col-md-12'>
+          {!this.state.remindButtonClicked
+            ? <button
+                onClick={this.handleRemindClick}
+                id="owner-delete-button"
+                className="col-md-offset-1 remindButton"
+                >
+                Send event reminders to group now
+              </button>
+            : <h3 className="sendText" onClick={this.handleRemindClick}>
+                Reminder Text Sent!
+              </h3>
+          }
         </div>
-        <button onClick={this.deleteEvent} id="owner-delete-button" className="col-md-offset-1">Delete this Event</button>
-        {!this.state.remindButtonClicked
-          ? <button onClick={this.handleRemindClick} id="owner-delete-button" className="col-md-offset-1">Send Reminder Now</button>
-          : <h3 className="sendText" id="" onClick={this.handleRemindClick}>Reminder Text Sent!</h3>
-        }
+
+        <div className='whosIn col-md-12'>
+          <h2 className='whosIn'> Who's In? </h2>
+          <div className="col-md-12">
+            <AttendeeTable attendees={event.attendees}/>
+          </div>
+        </div>
+
       </div>
     );
   }
 }
 
-export default OwnerDetailedView;
-
-
-// {this.state.confirm === false ? "Delete this Event" : "Are you sure?"}
+export default EventOverview;

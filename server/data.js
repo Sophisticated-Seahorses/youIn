@@ -4,36 +4,40 @@ let users = [
   {
     user_id: 1,
     token: 1234,
-    firstname: 'Anthony',
-    lastname: 'Bianco',
+    firstname: 'David',
+    lastname: 'Deng',
     photoUrl: 'anthonyurl',
-    email: 'anthony.bianco3@gmail.com'
+    email: 'daviddeng@gmail.com',
+    phoneNumber: null
   },
 
   {
     user_id: 2,
     token: 12345,
-    firstname: 'Nick',
-    lastname: 'Below',
+    firstname: 'JG',
+    lastname: 'Demathieu',
     photoUrl: 'nickurl',
-    email: 'nkbelow@gmail.com'
+    email: 'jgdemathieu@gmail.com',
+    phoneNumber: null
   },
 
   {
     user_id: 3,
     token: 12346,
-    firstname: 'David',
-    lastname: 'Brodie',
+    firstname: 'Mike',
+    lastname: 'Burton',
     photoUrl: 'davidurl',
-    email: 'david.brodie122@gmail.com'
+    email: 'david.brodie122@gmail.com',
+    phoneNumber: null
   },
   {
     user_id: 4,
     token: 12344,
-    firstname: 'Gus',
-    lastname: 'Brennan',
+    firstname: 'Jeff',
+    lastname: 'Milberger',
     photoUrl: 'gusurl',
-    email: 'augustusmb@gmail.com'
+    email: 'jeff.milberger@gmail.com',
+    phoneNumber: null
   },
 
   {
@@ -42,7 +46,8 @@ let users = [
     firstname: 'Fred',
     lastname: 'Zirdung',
     photoUrl: 'fredurl',
-    email: 'fred@hackreactor.com'
+    email: 'fred@hackreactor.com',
+    phoneNumber: null
   } 
 ];
 let events = [

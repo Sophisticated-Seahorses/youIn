@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:100,300|Amatic+SC:700|Kanit|Righteous');
 
 .page-header {
   background: url(./media_lib/youInLogo.png) 50% 50% no-repeat;
@@ -38,6 +39,7 @@
 
 .login {
   /*background-color: rgba(161, 23, 45, 0.7)*/
+  /*background: url(./media_lib/campfire-984020_1920.jpg) no-repeat center center fixed;*/
 }
 
 body {
@@ -54,21 +56,33 @@ h1 {
   text-align: center;
   color: white;
   font-family: Roboto, sans-serif;
-  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  /*text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;*/
 }
 
-h2, h4 {
-  vertical-align: text-bottom;
-  text-align: center;
+h2 {
+  /*vertical-align: text-bottom;*/
+  /*text-align: center;*/
   color: white;
-  font-family: Roboto, sans-serif;
-  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  /*font-family: Roboto, sans-serif;*/
+  font-family: 'Josefin Sans', sans-serif;
+font-weight: 100;
+  /*text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;*/
+}
+
+h4{
+  color: black;
+  font-family: 'Kanit', sans-serif;
+
 }
 
 p, li {
   color: white;
-  font-family: Roboto, sans-serif;
-  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    /*text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;*/
+  font-family: 'Kanit', sans-serif;
+}
+
+ul {
+  padding: 0;
 }
 
 .create {
@@ -219,5 +233,288 @@ button */
   border-radius: 12px;
   background-color: #f47927;
   color: black;
+}
+
+h3.sendText {
+    display: inline;
+}
+
+
+/*================ CSS REDESIGN =================*/
+
+.directory {
+  background-color: rgb(77,57,75);
+  color: white;
+}
+
+.event-title {
+  background-color: rgb(231,227,217);  /* for debug */
+}
+
+.event-chat {
+  background-color: rgb(230,230,230);  /* for debug */
+
+}
+
+.container-fluid.main{
+  position: fixed;
+  margin: 0 auto;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: black;
+}
+
+.col-sm-3.account{
+  background-color: rgb(77, 56, 75);
+  height: 100%;
+  padding: 0;
+}
+
+.col-sm-12.topbar {
+  background-color: antiquewhite;
+  padding: 1em;
+  margin: 0 auto;
+  border-bottom: 2px double black;
+}
+
+.col-sm-9.right9 {
+  padding: 0;
+}
+
+.col-sm-8.mainview {
+  background-color: antiquewhite;
+  height: 100%;
+}
+.col-sm-12.mainview {
+  background-color: antiquewhite;
+  height: 100%;
+}
+
+.col-sm-4.right4 {
+  background-color: antiquewhite;
+  height: 100%;
+  border-left: 2px double black;
+  padding: 0;
+  margin: 0;
+}
+
+.col-sm-12.accountMyEvents {
+    padding: 2em;
+}
+.col-sm-12.accountFriendEvents {
+    padding: 2em;
+}
+.col-sm-12.accountTopBar {
+    padding: 2em;
+}
+.row-sm-3.accountPhoto img {
+  height: 4em;
+  border-radius: 10%;
+  float: left;
+}
+.row-sm-9.accountName h2 {
+  display: inline;
+  font-size: 2em;
+}
+
+.eventListItem li{
+  font-size: 1.6em;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  list-decoration: none;
+}
+
+.eventListItem li:hover {
+  color: cornflowerblue;
+  transition: 0.2s ease;
+}
+
+.caret-down {
+  font-size: 0.5em;
+  padding-left: 2em;
+}
+
+.topBar h2 {
+  color: black;
+  display: inline;
+}
+
+.whosIn, .friendsNameList li, .flexRowTop h2 {
+  color: black;
+  text-align: center;
+}
+
+.whosIn {
+  font-weight: bold;
+}
+
+ul li img {
+    height: 3em;
+}
+
+.progress {
+  width: 20%;
+  float: center;
+}
+
+.glyphicon-plus-sign {
+  font-size: 0.8em;
+  border: hidden;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.glyphicon-plus-sign:hover {
+  color: cornflowerblue;
+}
+
+.topBar h1 {
+  color: black;
+  display: inline;
+}
+
+.logoutButton {
+   float: right;
+   padding-left: 10em;
+}
+
+li.displayChatNames {
+  color: black;
+}
+
+li img {
+  height: 2em;
+  /*margin: 0.5em;*/
+  border-radius: 10%;
+}
+
+li {
+  list-style: none;
+}
+
+p.msgContent{
+  display: inline;
+  font-size: 1.2em;
+}
+
+.msgTime{
+  display: block;
+  padding: 0;
+  margin: 0;
+  color: darkslategrey;
+  font-size: 0.7em;
+}
+
+ul.flexRowMiddle p {
+  color: black;
+  margin: 0;
+}
+.msgTopBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.msgTopBar img{
+  flex: 0 1 auto;
+}
+
+.msgTop{
+  flex: auto;
+}
+
+ul.flexRowMiddle li {
+}
+ul.flexRowMiddle li:nth-child(odd) {
+  background-color: rgba(199, 216, 199, 0.53)
+}
+.col-md-12 h4 {
+  text-align: center;
+}
+.chatFlexForm {
+  /*border: 1px green solid;*/
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: stretch;
+
+}
+.chatFlexTop {
+  flex: 0 1 auto;
+  margin: 0;
+}
+
+.chatFlexMiddle{
+  flex: 1 1 auto;
+  min-height: auto;
+  overflow: scroll;
+}
+
+.chatFlexBottom{
+  flex: 0 1 auto;
+  min-height: auto;
+  /*border: 1 white solid;*/
+  background-color: rgba(255, 255, 255, 0.68);
+  /*padding: 1em;*/
+}
+
+.flexRowTop{
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  font-size: 1.2em;
+
+}
+
+.flexRowMiddle{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.flexRowBottom{
+  display: flex;
+  align-items: stretch;
+}
+
+input.chatFlex4-5{
+  flex: 1 1 auto;
+  padding: 1em;
+}
+
+input.chatFlex1-5{
+  flex: 0 1 auto;
+}
+
+.displayChatNames{
+  flex: 0 1 auto;
+}
+
+input.chatFlex1-5 {
+  background-color: cornflowerblue;
+}
+
+input.chatFlex1-5:hover {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.linkLookalike {
+  color: cornflowerblue;
+  text-decoration: underline;
+}
+
+.friendsTable {
+  margin-left: 0;
+  padding-left: 0;
+  color: black;
+  list-style: none;
+  height: 3em;
+  display: block;
+}
+
+.remindButton {
+  margin: 5px;
 }
 

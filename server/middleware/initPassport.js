@@ -1,10 +1,14 @@
+let dotenv = require('dotenv');
+dotenv.config({path: '.env'});
 let passport = require('passport');
 let FacebookTokenStrategy = require('passport-facebook-token');
 let db = require('../config.js');
+let clientID = process.env.CLIENT_ID;
+let clientSecret = process.env.CLIENT_SECRET;
 
 passport.use(new FacebookTokenStrategy({
-  clientID: process.env.CLIENT_ID || '1286128124802062',
-  clientSecret: process.env.CLIENT_SECRET || 'e3dc6a7e5c43646cb960cc09d1c08e0c'
+  clientID: clientID,
+  clientSecret: clientSecret
 }, function(accessToken, refreshToken, profile, done) {
   let id = +profile.id;
   db.query('SELECT * FROM users WHERE user_id = $1', [id])

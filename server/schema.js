@@ -24,7 +24,7 @@ module.exports = (db) => {
       location varChar(255),\
       date DATE,\
       time TIME,\
-      min INT);')
+      min INT);');
   })
   .then(() => {
     return db.query('CREATE TABLE IF NOT EXISTS users (\
@@ -33,18 +33,34 @@ module.exports = (db) => {
       firstname varChar(50),\
       lastname varChar(50),\
       photoUrl varChar(150),\
-      email varChar(50));')
+      email varChar(50),\
+      account_id varChar(50),\
+      phoneNumber varChar(20));');
+  })
+  .then(() => {
+
+    return db.query('CREATE TABLE IF NOT EXISTS messages (\
+      id SERIAL PRIMARY KEY,\
+      event_id INT NOT NULL,\
+      event_owner BIGINT NOT NULL,\
+      message VARCHAR(1000) NOT NULL,\
+      created TIMESTAMP(8) default (now()),\
+      date DATE,\
+      photourl VARCHAR(255) NOT NULL,\
+      author_email VARCHAR(255) NOT NULL,\
+      author_id BIGINT NOT NULL,\
+      name VARCHAR(50) NOT NULL);')
   })
   .then(() => {
 
     return db.query('CREATE TABLE IF NOT EXISTS users_events (\
       event_id int not null,\
       user_id BIGINT not null,\
-      current_status status default \'pending\');')
+      current_status status default \'pending\');');
   })
   .then(() => {
     return db.query('CREATE TABLE IF NOT EXISTS friends (\
       user1 BIGINT not null,\
-      user2 BIGINT not null);')
+      user2 BIGINT not null);');
   });
 };

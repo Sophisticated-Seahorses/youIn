@@ -9,7 +9,7 @@ class Facebook extends React.Component {
   componentDidMount() {
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : window.location.host === 'localhost:8080' ? '1286128124802062' : window.location.host === 'you-in.herokuapp.com' ? '1724251701198619' :'414888392204388',
+        appId      : window.location.host === 'localhost:8080' ? '1743753022621709' : window.location.host === 'you--in.herokuapp.com' ? '1292019857556709' : '786920808132501',
         cookie     : true,  // enable cookies to allow the server to access
                           // the session
         xfbml      : true,
@@ -27,6 +27,7 @@ class Facebook extends React.Component {
     FB.api('/me', function(response) {
       check.props.setName(response.name);
       console.log('Successful login for: ' + response.name);
+      // check.props.handleLogin();
     });
   }
 
@@ -51,8 +52,10 @@ class Facebook extends React.Component {
         console.log('results of fetching events', result);
         this.setState({
           ownerEvents: result.ownerEvents,
-          friendEvents: result.friendEvents
+          friendEvents: result.friendEvents,
+          successfulLogin: true
         });
+
       });
       this.props.history.push('/homepage');
 
@@ -80,7 +83,7 @@ class Facebook extends React.Component {
        <div className='container'>
          <div className='page-header'>
          </div>
-         <div className='col-md-12 login'>
+         <div className='col-md-12'>
            <h1> Start the Party </h1>
            <h4> With The Click Of A Button </h4>
            <div className='row center'>
